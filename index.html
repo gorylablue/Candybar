@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Candy Bar Exotic Drinks</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Coctelería de dulces en el casco de Ponce. Calle Estrella esq. León #84. Miércoles y jueves 6 p.m. a 12 a.m., viernes y sábado 6 p.m. a 3 a.m.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#170A1C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Figtree:wght@400;500;600;700;800&family=Yellowtail&display=swap" rel="stylesheet">
+<style>
+[hidden]{display:none!important}img{max-width:100%}
+/* Layout: noche de neón. Letrero de bombillas + trago servido en vivo, carta en arco, pared de neón, celebración */
+:root{
+  --noche:#170A1C; --noche-2:#211027; --uva:#2E1238; --uva-2:#3D1A4A;
+  --rosa:#FF3FB4; --rosa-2:#C2187F; --algodon:#FFB9DF; --azucar:#FFF2F8; --lila:#A46BFF; --hielo:#7EE4FF; --limon:#FFE36A;
+  --gris:#CDB0C6; --tinta:#2B1235; --linea:rgba(255,185,223,.16);
+  --f-letrero:"Bungee","Arial Black",Impact,sans-serif;
+  --f-script:"Yellowtail","Brush Script MT",cursive;
+  --f-texto:"Figtree",system-ui,-apple-system,sans-serif;
+  --ease:cubic-bezier(.22,.8,.2,1);
+  --g:clamp(16px,4.5vw,56px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--noche);color:var(--azucar);font:400 17px/1.55 var(--f-texto);-webkit-font-smoothing:antialiased;overflow-x:clip}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:50;background:var(--noche)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+svg{display:block}
+:focus-visible{outline:3px solid var(--limon);outline-offset:3px;border-radius:10px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(var(--g),env(safe-area-inset-left,0px));padding-right:max(var(--g),env(safe-area-inset-right,0px))}
+section{scroll-margin-top:76px}
+h2{font-family:var(--f-letrero);font-weight:400;font-size:clamp(40px,6vw,84px);line-height:.95;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.script{font-family:var(--f-script);font-weight:400}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font-weight:700;font-size:16px;line-height:1;transition:transform .35s var(--ease),box-shadow .35s,background .3s,color .3s;white-space:nowrap}
+.btn svg{width:18px;height:18px}
+.btn:hover{transform:translateY(-2px)}
+.btn-rosa{background:var(--rosa);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.12) inset,0 12px 34px -10px rgba(255,63,180,.8)}
+.btn-rosa:hover{box-shadow:0 0 0 1px rgba(255,255,255,.2) inset,0 16px 44px -8px rgba(255,63,180,1)}
+.btn-ghost{box-shadow:inset 0 0 0 1.5px rgba(255,185,223,.55);color:var(--azucar)}
+.btn-ghost:hover{background:rgba(255,185,223,.1)}
+
+/* ---------- Nav ---------- */
+.nav{position:fixed;left:0;right:0;top:0;z-index:40;padding-top:env(safe-area-inset-top,0px);transition:background .4s,box-shadow .4s}
+.nav.solid{background:rgba(23,10,28,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--linea)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
+.marca{display:flex;align-items:center;gap:10px;font-family:var(--f-letrero);font-size:15px;letter-spacing:.02em}
+.marca svg{width:38px;height:38px;filter:drop-shadow(0 0 8px rgba(255,63,180,.7))}
+.nav-links{display:flex;align-items:center;gap:26px;font-weight:600;font-size:15px}
+.nav-links a:not(.btn){opacity:.82;transition:opacity .2s}
+.nav-links a:not(.btn):hover{opacity:1}
+.nav .btn{min-height:42px;padding:0 18px;font-size:15px}
+.ig svg{width:22px;height:22px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding-top:calc(86px + env(safe-area-inset-top,0px));padding-bottom:40px;min-height:min(100svh,940px);display:flex;align-items:center;
+  background:radial-gradient(55% 50% at 74% 48%,rgba(255,63,180,.26),transparent 70%),radial-gradient(45% 40% at 10% 15%,rgba(164,107,255,.2),transparent 70%),radial-gradient(40% 35% at 30% 100%,rgba(126,228,255,.08),transparent 70%),var(--noche)}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;grid-template-areas:"letrero trago" "texto trago";column-gap:clamp(20px,4vw,60px);align-items:center;width:100%}
+.letrero{grid-area:letrero;align-self:end;margin:0}
+.letrero canvas{display:block;width:100%;height:auto}
+.kicker{font-family:var(--f-letrero);font-size:clamp(13px,1.3vw,17px);letter-spacing:.2em;color:var(--algodon);margin-top:14px}
+.texto{grid-area:texto;align-self:start}
+.lema{font-family:var(--f-script);font-size:clamp(40px,4.6vw,68px);line-height:1.05;margin:18px 0 6px;color:#fff;text-shadow:0 0 6px rgba(255,255,255,.6),0 0 18px var(--rosa),0 0 42px rgba(255,63,180,.8);text-wrap:balance}
+.dir{color:var(--gris);margin:0 0 20px}
+.status{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;background:rgba(255,255,255,.06);border:1px solid var(--linea);border-radius:999px;padding:8px 16px 8px 12px;margin-bottom:22px}
+.dot{width:9px;height:9px;border-radius:50%;background:#8C7088;position:relative;flex:none}
+.dot.on{background:#3BE39A;box-shadow:0 0 10px #3BE39A}
+.dot.on::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid #3BE39A;animation:ping 2.2s var(--ease) infinite}
+@keyframes ping{from{transform:scale(.4);opacity:.9}to{transform:scale(1.7);opacity:0}}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.trago-box{grid-area:trago;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
+.trago{width:100%;max-width:430px;height:auto;max-height:min(74svh,660px);overflow:visible}
+.otro{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14.5px;padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid var(--linea);transition:background .3s,transform .3s var(--ease)}
+.otro:hover{background:rgba(255,63,180,.18);transform:translateY(-2px)}
+.otro svg{width:18px;height:18px;color:var(--algodon)}
+.otro[disabled]{opacity:.45;pointer-events:none}
+.chispa{transform-box:fill-box;transform-origin:center;transform:scale(0)}
+.listo .chispa{animation:tw 2.6s var(--d) ease-in-out infinite}
+@keyframes tw{0%,100%{transform:scale(0) rotate(0)}40%{transform:scale(1) rotate(45deg)}70%{transform:scale(.2) rotate(90deg)}}
+.burbuja{opacity:0}
+.listo .burbuja{animation:sube 3.2s var(--d) linear infinite}
+@keyframes sube{0%{transform:translateY(0);opacity:0}15%{opacity:.8}100%{transform:translateY(-130px);opacity:0}}
+
+/* ---------- Shotsitos ---------- */
+.carta{padding-block:clamp(80px,10vw,140px);background:linear-gradient(180deg,var(--noche) 0%,var(--noche-2) 100%)}
+.carta-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,48px)}
+.carta-head p{color:var(--gris);max-width:28em;margin:12px 0 0}
+.hint{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;color:var(--algodon)}
+.hint svg{width:20px;height:20px}
+.hoja{position:relative;border-radius:30px;padding:clamp(10px,1.6vw,18px);background:linear-gradient(135deg,#FFEEA8 0%,#FFD6EB 42%,#FF9FD0 100%);box-shadow:0 40px 80px -40px rgba(255,63,180,.55)}
+.hoja-in{position:relative;background:#F6F1FF;color:var(--tinta);border-radius:min(46vw,560px) min(46vw,560px) 22px 22px / 260px 260px 22px 22px;padding:clamp(70px,9vw,120px) clamp(18px,5vw,72px) clamp(28px,4vw,52px)}
+.hoja-tit{position:absolute;left:clamp(16px,6vw,90px);top:clamp(20px,3.4vw,46px);font-family:var(--f-script);font-size:clamp(46px,6vw,80px);line-height:1;color:#7B3FC4;transform:rotate(-10deg);margin:0}
+.hoja-logo{position:absolute;right:clamp(16px,5vw,70px);top:clamp(16px,2.6vw,34px);width:clamp(54px,7vw,84px);height:auto}
+.lista{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(6,auto);grid-auto-flow:column;column-gap:clamp(24px,4vw,64px)}
+.shot{position:relative;width:100%;display:grid;grid-template-columns:50px minmax(0,1fr) auto;gap:16px;align-items:center;text-align:left;padding:14px 10px;border-radius:16px;transition:background .25s}
+.shot:hover{background:rgba(164,107,255,.1)}
+.lista li+li .shot{box-shadow:0 -1px 0 rgba(43,18,53,.08)}
+.lista li:nth-child(7) .shot{box-shadow:none}
+.vaso svg{width:46px;height:57px;overflow:visible}
+.sh-t{min-width:0}
+.sh-t b{display:block;font-weight:800;font-size:16.5px;letter-spacing:.01em;text-transform:uppercase;line-height:1.2}
+.sh-t small{display:block;font-size:14.5px;color:#6E5579;margin-top:3px;line-height:1.35}
+.shot em{font-style:normal;font-family:var(--f-letrero);font-size:22px;color:var(--rosa-2)}
+.liq{transform-box:fill-box;transform-origin:50% 100%;transition:transform .85s cubic-bezier(.3,.7,.2,1) var(--d,0s)}
+.top{transform-box:fill-box;transform-origin:50% 100%;transition:transform .5s cubic-bezier(.34,1.56,.64,1) calc(var(--d,0s) + .55s),opacity .2s calc(var(--d,0s) + .55s)}
+.vacio .liq{transform:scaleY(0);transition-duration:.25s;transition-delay:0s}
+.vacio .top{transform:scale(0);opacity:0;transition-duration:.15s;transition-delay:0s}
+.salud{position:absolute;right:56px;top:6px;font-family:var(--f-script);font-size:26px;color:var(--rosa);pointer-events:none;animation:salud 1.1s var(--ease) forwards}
+@keyframes salud{0%{opacity:0;transform:translateY(10px) rotate(-8deg) scale(.7)}25%{opacity:1;transform:translateY(-4px) rotate(-8deg) scale(1)}100%{opacity:0;transform:translateY(-26px) rotate(-8deg)}}
+
+/* ---------- El local (neón) ---------- */
+.local{position:relative;overflow:hidden;padding-block:clamp(90px,11vw,160px);
+  background:radial-gradient(40% 50% at 78% 22%,rgba(255,63,180,.2),transparent 70%),radial-gradient(40% 45% at 68% 60%,rgba(86,217,255,.13),transparent 70%),radial-gradient(40% 45% at 85% 92%,rgba(196,139,255,.16),transparent 70%),linear-gradient(180deg,var(--uva) 0%,#25102D 100%)}
+.local-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,80px);align-items:center}
+.local-txt p{color:var(--gris);font-size:clamp(17px,1.5vw,20px);max-width:24em;margin:18px 0 0}
+.letreros{position:relative;display:flex;flex-direction:column;gap:clamp(10px,2vw,22px);align-items:flex-start;padding-left:clamp(0px,3vw,40px)}
+.neon{--c:var(--rosa);margin:0;font-family:var(--f-script);font-size:clamp(52px,7.4vw,108px);line-height:1.05;color:#fff;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 10px var(--c),0 0 22px var(--c),0 0 46px var(--c),0 0 90px var(--c)}
+.neon.n2{margin-left:clamp(20px,8vw,120px)}
+.neon.n3{margin-left:clamp(0px,3vw,40px)}
+.neon span{display:inline-block}
+.neon.apagado span{opacity:.18;text-shadow:none}
+.neon.on span{animation:enc 1.3s var(--dl) both}
+.neon span.chis{animation:chis .35s linear}
+@keyframes enc{0%{opacity:.18}8%{opacity:1}12%{opacity:.3}20%{opacity:1}25%{opacity:.5}34%,100%{opacity:1}}
+@keyframes chis{0%,100%{opacity:1}30%{opacity:.25}55%{opacity:.9}70%{opacity:.4}}
+.icono-neon{position:absolute;fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.icono-neon path{stroke-dasharray:1;stroke-dashoffset:0}
+.local.apagado .icono-neon path{stroke-dashoffset:1;opacity:.2}
+.local.on .icono-neon path{animation:traza 1.8s .4s var(--ease) both}
+@keyframes traza{from{stroke-dashoffset:1;opacity:.3}to{stroke-dashoffset:0;opacity:1}}
+.corazon{right:2%;top:-14%;width:clamp(70px,9vw,120px);stroke:var(--limon);filter:drop-shadow(0 0 4px var(--limon)) drop-shadow(0 0 16px var(--limon))}
+.cono{right:4%;bottom:-6%;width:clamp(60px,7vw,96px);stroke:var(--algodon);filter:drop-shadow(0 0 4px var(--rosa)) drop-shadow(0 0 16px var(--rosa))}
+
+/* ---------- Celebra ---------- */
+.celebra{padding-block:clamp(90px,11vw,150px);background:var(--noche-2)}
+.cel-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center}
+.cel-txt p{color:var(--gris);font-size:clamp(17px,1.5vw,20px);max-width:25em;margin:18px 0 0}
+.cel-txt h2 .script{display:block;color:var(--rosa);font-size:.8em;margin-bottom:6px;text-shadow:0 0 18px rgba(255,63,180,.6)}
+.pastel{position:relative;margin-top:28px;display:flex;align-items:center;gap:20px}
+.pastel button{position:relative;width:132px;flex:none;border-radius:24px}
+.pastel svg{width:100%;height:auto;overflow:visible}
+.pastel figcaption{font-size:15px;color:var(--gris);max-width:16em}
+.pastel figcaption b{display:block;color:var(--azucar);font-size:17px}
+.llama{transform-box:fill-box;transform-origin:50% 100%;animation:llama .9s ease-in-out infinite alternate;transition:opacity .2s}
+@keyframes llama{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.9,1.12) rotate(3deg)}}
+.soplada .llama{opacity:0}
+.humo{opacity:0}
+.soplada .humo{animation:humo 1.6s ease-out forwards}
+@keyframes humo{0%{opacity:.8;transform:translateY(0)}100%{opacity:0;transform:translateY(-34px) translateX(6px)}}
+.confeti{position:absolute;width:8px;height:12px;border-radius:2px;pointer-events:none;animation:confeti 1.3s var(--ease) forwards}
+@keyframes confeti{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:0}}
+
+.plan{background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.03));border:1px solid var(--linea);border-radius:28px;padding:clamp(22px,3vw,36px);display:grid;gap:22px;min-width:0}
+.plan h3{margin:0;font-family:var(--f-letrero);font-weight:400;font-size:24px;letter-spacing:.01em}
+.campo{display:grid;gap:10px;min-width:0}
+.campo>span{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--algodon)}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.seg label span{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;font-weight:700;font-size:15px;box-shadow:inset 0 0 0 1.5px rgba(255,185,223,.35);transition:background .25s,box-shadow .25s,color .25s}
+.seg input:checked+span{background:var(--rosa);color:#fff;box-shadow:inset 0 0 0 1.5px var(--rosa),0 0 20px -4px var(--rosa)}
+.seg input:focus-visible+span{outline:3px solid var(--limon);outline-offset:3px}
+.fila2{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:end}
+.stepper{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.06);border-radius:999px;padding:4px;box-shadow:inset 0 0 0 1.5px rgba(255,185,223,.25)}
+.stepper button{width:40px;height:40px;border-radius:50%;font-size:22px;font-weight:700;display:grid;place-items:center;transition:background .2s}
+.stepper button:hover{background:rgba(255,63,180,.25)}
+.stepper output{min-width:34px;text-align:center;font-weight:800;font-size:18px;font-variant-numeric:tabular-nums}
+.plan input[type=text]{width:100%;min-height:48px;border-radius:14px;border:0;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1.5px rgba(255,185,223,.25);color:var(--azucar);font:inherit;padding:0 16px}
+.plan input[type=text]::placeholder{color:#9C7F97}
+.plan input[type=text]:focus{outline:none;box-shadow:inset 0 0 0 2px var(--rosa)}
+.msg{background:rgba(0,0,0,.25);border-radius:16px;padding:14px 16px;font-size:15px;line-height:1.5;color:var(--azucar);border-left:3px solid var(--rosa);min-height:72px;overflow-wrap:anywhere}
+.plan-cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.nota-copia{font-size:14px;color:var(--algodon);min-height:20px}
+
+/* ---------- Opiniones ---------- */
+.opiniones{padding-block:clamp(70px,8vw,110px);background:linear-gradient(180deg,var(--noche-2),var(--noche))}
+.op-grid{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:16px;align-items:stretch}
+.nota{display:flex;flex-direction:column;justify-content:center;gap:6px}
+.nota b{font-family:var(--f-letrero);font-weight:400;font-size:clamp(76px,9vw,128px);line-height:.9;color:#fff;text-shadow:0 0 30px rgba(255,63,180,.55)}
+.estrellas{position:relative;display:inline-block;font-size:24px;letter-spacing:4px;color:rgba(255,255,255,.18);line-height:1}
+.estrellas i{position:absolute;inset:0 auto 0 0;width:92%;overflow:hidden;color:var(--limon);font-style:normal;white-space:nowrap}
+.nota p{margin:4px 0 0;color:var(--gris)}
+.nota a{font-weight:700;color:var(--algodon);margin-top:6px}
+.nota a:hover{color:#fff}
+.op{margin:0;border-radius:24px;padding:clamp(22px,2.6vw,32px);background:rgba(255,255,255,.05);border:1px solid var(--linea);display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.op p{margin:0;font-size:clamp(20px,1.9vw,26px);font-weight:600;line-height:1.3}
+.op cite{font-style:normal;font-size:14.5px;color:var(--gris)}
+.op cite span{color:var(--limon);letter-spacing:2px;margin-right:8px}
+
+/* ---------- Visítanos ---------- */
+.visita{padding-block:clamp(80px,10vw,140px) clamp(70px,8vw,110px)}
+.visita h2{margin-bottom:clamp(30px,4vw,52px)}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.tile{border-radius:28px;background:rgba(255,255,255,.05);border:1px solid var(--linea);padding:clamp(22px,2.6vw,32px);min-width:0}
+.tile small{display:block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--algodon);margin-bottom:12px}
+.t-hora{grid-column:span 5}
+.t-mapa{grid-column:span 7;grid-row:span 2;padding:0;overflow:hidden;position:relative;min-height:420px;display:block}
+.t-cont{grid-column:span 5}
+.hora-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:6px}
+.hora-top small{margin:0}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;padding:6px 12px 6px 10px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--gris)}
+.badge.on{background:rgba(59,227,154,.14);color:#7DF0BF}
+.big{font-family:var(--f-letrero);font-weight:400;font-size:clamp(24px,2.5vw,34px);line-height:1.1;margin:10px 0 16px}
+.hrs{margin:0;border-top:1px solid var(--linea)}
+.hrs div{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--linea);color:var(--gris);font-size:15.5px}
+.hrs dt{margin:0}.hrs dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.hrs div.hoy{color:#fff;font-weight:700}
+.hrs div.hoy dt::after{content:"Hoy";margin-left:8px;font-size:11.5px;font-weight:800;color:#fff;background:var(--rosa);border-radius:99px;padding:2px 8px;vertical-align:2px}
+.t-mapa svg{position:absolute;inset:0;width:100%;height:100%}
+.pin-onda{transform-box:fill-box;transform-origin:center;animation:onda 2.4s ease-out infinite}
+@keyframes onda{from{transform:scale(.5);opacity:.8}to{transform:scale(2.4);opacity:0}}
+.t-mapa .over{position:absolute;left:14px;right:14px;bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:rgba(23,10,28,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--linea);border-radius:22px;padding:14px 14px 14px 20px}
+.t-mapa .over b{display:block;font-size:18px;line-height:1.25}
+.t-mapa .over span{display:block;font-size:14.5px;color:var(--gris)}
+.tel{display:block;font-family:var(--f-letrero);font-weight:400;font-size:clamp(28px,3.2vw,42px);line-height:1;margin-bottom:18px;user-select:all;-webkit-user-select:all}
+.cont-row{display:flex;gap:10px;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--linea);padding-block:28px calc(28px + env(safe-area-inset-bottom,0px));font-size:14px;color:var(--gris)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap}
+footer b{color:var(--azucar);font-weight:700}
+.bar{display:none}
+
+/* ---------- iPad ---------- */
+@media (max-width:1024px){
+  .nav-links a.hide-t{display:none}
+  .hero-grid{grid-template-columns:1fr 1fr}
+  .lista{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}
+  .lista li:nth-child(7) .shot{box-shadow:0 -1px 0 rgba(43,18,53,.08)}
+  .local-grid,.cel-grid{grid-template-columns:1fr}
+  .letreros{padding-left:0}
+  .op-grid{grid-template-columns:1fr 1fr}
+  .nota{grid-column:1/-1}
+  .t-hora,.t-cont{grid-column:span 6}
+  .t-mapa{grid-column:span 12;grid-row:auto;min-height:380px;order:3}
+}
+@media (max-width:820px){
+  .hero{min-height:0;padding-bottom:28px}
+  .hero-grid{grid-template-columns:1fr;grid-template-areas:"letrero" "trago" "texto"}
+  .letrero{align-self:auto}
+  .trago{max-height:42svh;width:auto}
+  .kicker{display:block;text-align:center}
+  .texto{text-align:center}
+  .cta{justify-content:center}
+  .nav-links a:not(.btn):not(.ig){display:none}
+}
+/* ---------- iPhone ---------- */
+@media (max-width:640px){
+  body{font-size:16px}
+  .marca span{display:none}
+  .nav .btn.call{display:none}
+  .lema{font-size:clamp(36px,10.5vw,48px)}
+  .cta .btn{flex:1 1 140px;padding:0 16px}
+  .hoja-in{border-radius:200px 200px 18px 18px / 120px 120px 18px 18px;padding-top:96px}
+  .shot{grid-template-columns:42px minmax(0,1fr) auto;gap:12px;padding:12px 4px}
+  .vaso svg{width:40px;height:50px}
+  .sh-t b{font-size:15px}
+  .neon{font-size:clamp(46px,14vw,64px)}
+  .neon.n2{margin-left:24px}
+  .pastel button{width:108px}
+  .fila2{grid-template-columns:1fr}
+  .op-grid{grid-template-columns:1fr}
+  .t-hora,.t-cont{grid-column:span 12}
+  .t-mapa{min-height:360px}
+  .t-mapa .over{flex-direction:column;align-items:stretch}
+  .bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;z-index:30;left:0;right:0;bottom:0;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));background:rgba(23,10,28,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--linea);transform:translateY(110%);transition:transform .45s var(--ease)}
+  .bar.show{transform:none}
+  .bar .btn{min-height:50px}
+  footer{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  html{scroll-behavior:auto}
+}
+</style>
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="17.5" fill="#FFF2F8"/>
+    <circle cx="20" cy="20" r="17.5" fill="none" stroke="#FF3FB4" stroke-width="2.5"/>
+    <circle cx="20" cy="20" r="14" fill="none" stroke="#FF3FB4" stroke-width="1" opacity=".5"/>
+    <path d="M11.5 12.5h17L20 22z" fill="#FF3FB4"/>
+    <path d="M20 22v7.5M15.5 30h9" stroke="#FF3FB4" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M27.5 7.5l-6.5 11" stroke="#C9A86A" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M25 10l2 1-1 2-2-1zM23.4 12.8l2 1-1 2-2-1z" fill="#A46BFF"/>
+  </symbol>
+</svg>
+
+<nav class="nav" id="nav" aria-label="Principal">
+  <div class="wrap">
+    <a class="marca" href="#top" aria-label="Candy Bar Exotic Drinks, inicio"><svg aria-hidden="true"><use href="#logo"/></svg><span>Candy Bar</span></a>
+    <div class="nav-links">
+      <a href="#shotsitos">Shotsitos</a>
+      <a href="#local" class="hide-t">El local</a>
+      <a href="#celebra">Celebra</a>
+      <a href="#visitanos">Horario</a>
+      <a class="ig" href="https://www.instagram.com/candybarexoticdrinks/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a class="btn btn-rosa call" href="tel:+17876057113">787-605-7113</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <h1 class="letrero">
+      <span class="sr">Candy Bar Exotic Drinks</span>
+      <canvas id="bombillas" aria-hidden="true"></canvas>
+      <span class="kicker" aria-hidden="true">Exotic Drinks · Est. 2021</span>
+    </h1>
+    <div class="trago-box">
+      <svg id="trago" class="trago" viewBox="0 0 400 620" role="img" aria-label="Un trago servido en copa con hielo, pajilla y algodón de azúcar arriba" style="--l1:#FF86CF;--l2:#E8208F;--c1:#FFD6EC;--c2:#FF9BD0">
+        <defs>
+          <clipPath id="copaC"><path d="M135 256 L265 256 L261.5 430 Q259.5 447 241 449 L159 449 Q140.5 447 138.5 430 Z"/></clipPath>
+          <linearGradient id="gLiq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--l1)"/><stop offset="1" style="stop-color:var(--l2)"/></linearGradient>
+          <radialGradient id="gPuff" cx=".36" cy=".3" r=".78"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" style="stop-color:var(--c1)"/><stop offset="1" style="stop-color:var(--c2)"/></radialGradient>
+          <linearGradient id="gMetal" x1="0" x2="1"><stop offset="0" stop-color="#8A84A0"/><stop offset=".42" stop-color="#F6F1FA"/><stop offset=".62" stop-color="#CFC7DC"/><stop offset="1" stop-color="#77708C"/></linearGradient>
+          <radialGradient id="gBrillo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FF3FB4" stop-opacity=".6"/><stop offset="1" stop-color="#FF3FB4" stop-opacity="0"/></radialGradient>
+          <radialGradient id="gHalo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFB9DF" stop-opacity=".35"/><stop offset="1" stop-color="#FFB9DF" stop-opacity="0"/></radialGradient>
+          <filter id="fluff" x="-25%" y="-25%" width="150%" height="150%"><feTurbulence type="fractalNoise" baseFrequency=".085" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="13" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <ellipse cx="200" cy="586" rx="170" ry="28" fill="url(#gBrillo)"/>
+        <ellipse id="halo" cx="200" cy="200" rx="170" ry="150" fill="url(#gHalo)" opacity="0"/>
+        <ellipse cx="200" cy="578" rx="66" ry="9" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+        <rect x="195" y="449" width="10" height="126" rx="3" fill="rgba(255,255,255,.16)" stroke="rgba(255,255,255,.42)" stroke-width="1.5"/>
+        <g id="pajilla"><rect x="221" y="62" width="11" height="372" rx="4" fill="#FFF6FB"/><rect x="221" y="62" width="4" height="372" rx="2" fill="#fff"/><rect x="228" y="62" width="4" height="372" rx="2" fill="#F1D9E8"/></g>
+        <path d="M135 256 L265 256 L261.5 430 Q259.5 447 241 449 L159 449 Q140.5 447 138.5 430 Z" fill="rgba(255,255,255,.05)"/>
+        <g clip-path="url(#copaC)">
+          <path id="liquido" fill="url(#gLiq)" opacity=".86" d="M120 470Z"/>
+          <g id="hielos">
+            <rect width="44" height="40" rx="8" fill="rgba(255,255,255,.22)" stroke="rgba(255,255,255,.6)" stroke-width="1.5"/>
+            <rect width="40" height="38" rx="8" fill="rgba(255,255,255,.22)" stroke="rgba(255,255,255,.6)" stroke-width="1.5"/>
+            <rect width="42" height="38" rx="8" fill="rgba(255,255,255,.2)" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/>
+          </g>
+          <g fill="rgba(255,255,255,.75)">
+            <circle class="burbuja" cx="160" cy="440" r="2.5" style="--d:.2s"/><circle class="burbuja" cx="208" cy="444" r="2" style="--d:1.1s"/>
+            <circle class="burbuja" cx="245" cy="438" r="3" style="--d:.6s"/><circle class="burbuja" cx="178" cy="446" r="1.8" style="--d:1.9s"/>
+            <circle class="burbuja" cx="236" cy="446" r="2.2" style="--d:2.5s"/>
+          </g>
+        </g>
+        <path d="M135 256 L265 256 L261.5 430 Q259.5 447 241 449 L159 449 Q140.5 447 138.5 430 Z" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2.5"/>
+        <ellipse cx="200" cy="256" rx="65" ry="6" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+        <path d="M150 276 L153 418" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".38"/>
+        <g transform="translate(200 388)">
+          <circle r="27" fill="#FFF4FA"/><circle r="22.5" fill="none" stroke="#FF3FB4" stroke-width="2.5"/>
+          <path d="M-9 -12h18L0 0z" fill="#FF3FB4"/><path d="M0 0v7M-5 7.5h10" stroke="#FF3FB4" stroke-width="1.8" stroke-linecap="round"/>
+          <text y="16" text-anchor="middle" font-family="Bungee, Arial Black, sans-serif" font-size="6.2" fill="#C2187F" letter-spacing=".3">CANDY BAR</text>
+        </g>
+        <g id="algodon" filter="url(#fluff)"></g>
+        <g id="pincho">
+          <path d="M318 70 L250 196" stroke="#D9B77A" stroke-width="4" stroke-linecap="round"/>
+          <g fill="#A46BFF" stroke="#E7D6FF" stroke-width="1">
+            <path d="M300 92l14 3 2 13-11 7-12-6 0-12z"/><path d="M288 112l13 2 3 13-10 8-13-6-1-12z" fill="#8F57F0"/>
+            <path d="M309 108l11 4 0 11-10 5-9-6 1-10z" fill="#C49BFF"/><path d="M279 131l12 3 1 12-10 6-11-6 1-11z"/>
+            <path d="M297 128l10 3 1 10-9 5-8-5 0-9z" fill="#C49BFF"/>
+          </g>
+        </g>
+        <g id="chispas" fill="#fff">
+          <g transform="translate(108 150)"><path class="chispa" style="--d:0s" d="M0-11L2.6-2.6 11 0 2.6 2.6 0 11-2.6 2.6-11 0-2.6-2.6Z"/></g>
+          <g transform="translate(300 230)"><path class="chispa" style="--d:.7s" d="M0-8L2-2 8 0 2 2 0 8-2 2-8 0-2-2Z"/></g>
+          <g transform="translate(150 78)"><path class="chispa" style="--d:1.3s" d="M0-8L2-2 8 0 2 2 0 8-2 2-8 0-2-2Z"/></g>
+          <g transform="translate(96 300)"><path class="chispa" style="--d:1.9s" d="M0-7L1.8-1.8 7 0 1.8 1.8 0 7-1.8 1.8-7 0-1.8-1.8Z"/></g>
+          <g transform="translate(318 330)"><path class="chispa" style="--d:.4s" d="M0-9L2.2-2.2 9 0 2.2 2.2 0 9-2.2 2.2-9 0-2.2-2.2Z"/></g>
+        </g>
+        <path id="chorro" fill="none" style="stroke:var(--l1)" stroke-linecap="round" stroke-width="0" d="M0 0"/>
+        <g id="coctelera" transform="translate(600 150)">
+          <path d="M-31 -52 L31 -52 L39 54 Q39 62 31 62 L-31 62 Q-39 62 -39 54 Z" fill="url(#gMetal)"/>
+          <rect x="-34" y="-6" width="68" height="11" fill="#FF3FB4"/>
+          <path d="M-20 -46 L-15 52" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+          <path d="M-25 -52 L25 -52 L17 -85 L-17 -85 Z" fill="url(#gMetal)"/>
+          <rect x="-9" y="-98" width="18" height="15" rx="4" fill="url(#gMetal)"/>
+        </g>
+      </svg>
+      <button class="otro" id="otro" type="button" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10l-1.2 9.5a3.8 3.8 0 0 1-7.6 0z"/><path d="M12 16v5M8.5 21h7"/></svg>Sírveme otro</button>
+    </div>
+    <div class="texto">
+      <p class="lema">Tu jangueo nunca fue tan dulce</p>
+      <p class="dir">Calle Estrella esq. León #84, casco de Ponce</p>
+      <div class="status"><span class="dot"></span><span data-estado>Miércoles a sábado desde las 6 p.m.</span></div>
+      <div class="cta">
+        <a class="btn btn-rosa" href="#shotsitos">Ver los shotsitos</a>
+        <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Candy+Bar+Exotic+Drinks+Calle+Estrella+84+Ponce+PR" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="carta" id="shotsitos">
+  <div class="wrap">
+    <div class="carta-head">
+      <div>
+        <h2>Shotsitos</h2>
+        <p>Pequeños, dulces y con nombre propio. De $4 a $5.</p>
+      </div>
+      <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 11V5a2 2 0 1 1 4 0v6M13 10a2 2 0 1 1 4 0v2M17 11a2 2 0 1 1 4 0v4a6 6 0 0 1-6 6h-2a6 6 0 0 1-5-2.7L5.3 14.5a1.8 1.8 0 0 1 2.9-2.1L9 13.5"/></svg>Toca un shot para servirlo</span>
+    </div>
+    <div class="hoja">
+      <div class="hoja-in" id="hoja">
+        <p class="hoja-tit" aria-hidden="true">Shotsitos</p>
+        <svg class="hoja-logo" viewBox="0 0 40 40" aria-hidden="true"><use href="#logo"/></svg>
+        <ul class="lista">
+          <li><button class="shot" data-k="bears" type="button"><span class="vaso"></span><span class="sh-t"><b>Candy Drunken Bears</b><small>Gomitas con tequila</small></span><em>$4</em></button></li>
+          <li><button class="shot" data-k="esqui" type="button"><span class="vaso"></span><span class="sh-t"><b>Candy Esquimalitos</b><small>Esquimalitos congelados con vodka</small></span><em>$4</em></button></li>
+          <li><button class="shot" data-k="jelly" type="button"><span class="vaso"></span><span class="sh-t"><b>Candy Jelly Shots</b></span><em>$4</em></button></li>
+          <li><button class="shot" data-k="skittles" type="button"><span class="vaso"></span><span class="sh-t"><b>Candy Green Skittles</b><small>Vodka y green apple sour</small></span><em>$4</em></button></li>
+          <li><button class="shot" data-k="bomb" type="button"><span class="vaso"></span><span class="sh-t"><b>Candy Bomb</b><small>Energy drink, vodka y granadina</small></span><em>$4</em></button></li>
+          <li><button class="shot" data-k="mamaita" type="button"><span class="vaso"></span><span class="sh-t"><b>Candy “Mamaita”</b><small>Baileys, vodka, granadina y crema batida. Se toma sin manos.</small></span><em>$5</em></button></li>
+          <li><button class="shot" data-k="meji" type="button"><span class="vaso"></span><span class="sh-t"><b>Candy Pink Mejicanita</b><small>Margarita rosa con borde de Tajín</small></span><em>$5</em></button></li>
+          <li><button class="shot" data-k="cake" type="button"><span class="vaso"></span><span class="sh-t"><b>Candy Birthday Cake</b><small>Amaretto, Baileys y crema batida</small></span><em>$5</em></button></li>
+          <li><button class="shot" data-k="snickers" type="button"><span class="vaso"></span><span class="sh-t"><b>Candy Snickers Shot</b><small>Licor de avellana, Kahlúa, Baileys y borde de chocolate</small></span><em>$5</em></button></li>
+          <li><button class="shot" data-k="cosmo" type="button"><span class="vaso"></span><span class="sh-t"><b>Candy Cotton Cosmo</b><small>Vodka, Tequila Rose y algodón de azúcar arriba</small></span><em>$5</em></button></li>
+          <li><button class="shot" data-k="poison" type="button"><span class="vaso"></span><span class="sh-t"><b>Candy Poison</b><small>Kahlúa, Tequila Rose y crema batida</small></span><em>$5</em></button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="local" id="local">
+  <div class="wrap local-grid">
+    <div class="local-txt">
+      <h2>El local</h2>
+      <p>Rosa, brillo y neón en la esquina de Estrella y León, en el casco de Ponce.</p>
+      <p>Miércoles y jueves abrimos a las 6 p.m. Viernes y sábado, la noche sigue hasta las 3 a.m.</p>
+    </div>
+    <div class="letreros">
+      <p class="neon" style="--c:#FF3FB4">Good vibes</p>
+      <p class="neon n2" style="--c:#56D9FF">Great music</p>
+      <p class="neon n3" style="--c:#C48BFF">Lots of candy</p>
+      <svg class="icono-neon corazon" viewBox="0 0 100 90" aria-hidden="true"><path pathLength="1" d="M50 82C20 60 6 44 8 26 10 10 30 4 42 14c4 3 6 7 8 10 2-3 4-7 8-10 12-10 32-4 34 12 2 18-12 34-42 56z"/></svg>
+      <svg class="icono-neon cono" viewBox="0 0 80 120" aria-hidden="true"><path pathLength="1" d="M14 46c-6-18 8-34 26-34s32 16 26 34M10 46h60L40 116 10 46zM22 62l26 30M34 50l24 28M56 58L34 96"/></svg>
+    </div>
+  </div>
+</section>
+
+<section class="celebra" id="celebra">
+  <div class="wrap cel-grid">
+    <div class="cel-txt">
+      <h2><span class="script">Celebra en</span>Candy Bar</h2>
+      <p>Cumpleaños, despedidas y noches con el corillo. Escríbenos antes y cuadramos tu noche.</p>
+      <figure class="pastel">
+        <button id="vela" type="button" aria-label="Sopla la vela del Candy Birthday Cake">
+          <svg viewBox="0 0 120 150" aria-hidden="true">
+            <ellipse cx="60" cy="144" rx="44" ry="6" fill="rgba(255,63,180,.35)"/>
+            <path d="M22 50 L98 50 L90 136 Q89.5 141 84 141 L36 141 Q30.5 141 30 136 Z" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.6)" stroke-width="2.5"/>
+            <path d="M25 62 L95 62 L90.5 134 Q90 138 85 138 L35 138 Q30 138 29.5 134 Z" fill="#EBC79C"/>
+            <g fill="#fff"><circle cx="38" cy="54" r="12"/><circle cx="56" cy="48" r="14"/><circle cx="74" cy="51" r="13"/><circle cx="88" cy="56" r="9"/><circle cx="28" cy="58" r="8"/></g>
+            <g><rect x="40" y="44" width="6" height="2.4" rx="1" fill="#FF3FB4" transform="rotate(30 43 45)"/><rect x="62" y="40" width="6" height="2.4" rx="1" fill="#56D9FF" transform="rotate(-20 65 41)"/><rect x="76" y="48" width="6" height="2.4" rx="1" fill="#FFE36A" transform="rotate(50 79 49)"/><rect x="50" y="54" width="6" height="2.4" rx="1" fill="#A46BFF" transform="rotate(-40 53 55)"/><rect x="30" y="52" width="6" height="2.4" rx="1" fill="#56D9FF"/></g>
+            <rect x="56" y="12" width="8" height="30" rx="2" fill="#FFB9DF"/><path d="M56 18l8-4M56 26l8-4M56 34l8-4" stroke="#FF3FB4" stroke-width="2"/>
+            <path d="M60 12v-4" stroke="#3A2147" stroke-width="1.5"/>
+            <path class="llama" d="M60 -12C66 -4 67 2 60 8C53 2 54 -4 60 -12Z" fill="#FFE36A" stroke="#FF9A3C" stroke-width="1.5"/>
+            <path class="humo" d="M60 6c-4-6 4-10 0-16s4-10 0-14" stroke="#CDB0C6" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <figcaption><b>Candy Birthday Cake</b>El shot del cumpleañero. Toca la vela y pide un deseo.</figcaption>
+      </figure>
+    </div>
+    <form class="plan" id="plan" novalidate>
+      <h3>Planifica tu noche</h3>
+      <div class="campo" role="radiogroup" aria-labelledby="l-tipo">
+        <span id="l-tipo">¿Qué buscas?</span>
+        <div class="seg">
+          <label><input type="radio" name="tipo" id="t-cumple" value="cumple" checked><span>Celebrar un cumpleaños</span></label>
+          <label><input type="radio" name="tipo" id="t-early" value="early"><span>Entrada temprana</span></label>
+        </div>
+      </div>
+      <div class="campo" role="radiogroup" aria-labelledby="l-dia">
+        <span id="l-dia">Día</span>
+        <div class="seg">
+          <label><input type="radio" name="dia" id="d-mie" value="miércoles"><span>Mié</span></label>
+          <label><input type="radio" name="dia" id="d-jue" value="jueves"><span>Jue</span></label>
+          <label><input type="radio" name="dia" id="d-vie" value="viernes" checked><span>Vie</span></label>
+          <label><input type="radio" name="dia" id="d-sab" value="sábado"><span>Sáb</span></label>
+        </div>
+      </div>
+      <div class="fila2">
+        <div class="campo">
+          <span id="l-pers">Personas</span>
+          <div class="stepper" aria-labelledby="l-pers">
+            <button type="button" id="menos" aria-label="Una persona menos">−</button>
+            <output id="pers" aria-live="polite">4</output>
+            <button type="button" id="mas" aria-label="Una persona más">+</button>
+          </div>
+        </div>
+        <label class="campo" for="nombre"><span>Tu nombre</span><input type="text" id="nombre" autocomplete="given-name" placeholder="Ej. Natalia"></label>
+      </div>
+      <div class="campo">
+        <span>Tu mensaje</span>
+        <p class="msg" id="msg" aria-live="polite"></p>
+      </div>
+      <div class="plan-cta">
+        <a class="btn btn-rosa" id="enviar" href="https://ig.me/m/candybarexoticdrinks" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg>Copiar y abrir Instagram</a>
+        <span class="nota-copia" id="notaCopia"></span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="opiniones" aria-labelledby="op-t">
+  <div class="wrap op-grid">
+    <div class="nota">
+      <b id="op-t">4.6</b>
+      <span class="estrellas" aria-label="4.6 de 5 estrellas">★★★★★<i aria-hidden="true">★★★★★</i></span>
+      <p>68 opiniones en Google</p>
+      <a href="https://www.instagram.com/candybarexoticdrinks/" target="_blank" rel="noopener">4,555 nos siguen en Instagram →</a>
+    </div>
+    <blockquote class="op"><p>“Excellent drinks.”</p><cite><span aria-hidden="true">★★★★★</span>Yadi B. en Google</cite></blockquote>
+    <blockquote class="op"><p>“Such a fun, pink vibe!!! A must-visit in Ponce.”</p><cite><span aria-hidden="true">★★★★★</span>Krystal F. en Google</cite></blockquote>
+  </div>
+</section>
+
+<section class="visita" id="visitanos">
+  <div class="wrap">
+    <h2>Visítanos</h2>
+    <div class="bento">
+      <div class="tile t-hora">
+        <div class="hora-top"><small>Horario</small><span class="badge" id="badge"><span class="dot"></span><span id="badgeTxt">Cerrado</span></span></div>
+        <p class="big" data-estado>Miércoles a sábado desde las 6 p.m.</p>
+        <dl class="hrs">
+          <div data-g="mj"><dt>Miércoles y jueves</dt><dd>6 p.m. a 12 a.m.</dd></div>
+          <div data-g="vs"><dt>Viernes y sábado</dt><dd>6 p.m. a 3 a.m.</dd></div>
+          <div data-g="dlm"><dt>Domingo a martes</dt><dd>Cerrado</dd></div>
+        </dl>
+      </div>
+      <a class="tile t-mapa" href="https://www.google.com/maps/search/?api=1&query=Candy+Bar+Exotic+Drinks+Calle+Estrella+84+Ponce+PR" target="_blank" rel="noopener" aria-label="Abrir Calle Estrella esquina León #84, Ponce, en Google Maps">
+        <svg viewBox="0 0 700 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="700" height="440" fill="#1E0C24"/>
+          <g fill="#2A1232">
+            <rect x="-20" y="-20" width="210" height="160" rx="12"/><rect x="230" y="-20" width="150" height="160" rx="12"/><rect x="420" y="-20" width="320" height="160" rx="12"/>
+            <rect x="-20" y="196" width="210" height="130" rx="12"/><rect x="230" y="196" width="150" height="130" rx="12"/><rect x="420" y="196" width="140" height="130" rx="12"/><rect x="600" y="196" width="140" height="130" rx="12"/>
+            <rect x="-20" y="362" width="210" height="120" rx="12"/><rect x="230" y="362" width="150" height="120" rx="12"/><rect x="420" y="362" width="320" height="120" rx="12"/>
+          </g>
+          <g fill="#3A1844"><rect x="20" y="30" width="80" height="50" rx="5"/><rect x="250" y="70" width="90" height="44" rx="5"/><rect x="460" y="40" width="110" height="60" rx="5"/><rect x="30" y="220" width="90" height="60" rx="5"/><rect x="620" y="226" width="90" height="70" rx="5"/><rect x="470" y="380" width="120" height="50" rx="5"/></g>
+          <g fill="#3B1F45"><rect x="-20" y="140" width="760" height="56"/><rect x="380" y="-20" width="40" height="480"/><rect x="190" y="-20" width="40" height="480"/><rect x="-20" y="326" width="760" height="36"/><rect x="560" y="196" width="40" height="130"/></g>
+          <path d="M-20 168H740M400 -20V460" stroke="#5A2E66" stroke-width="2" stroke-dasharray="12 12"/>
+          <text x="40" y="174" font-family="Bungee, Arial Black, sans-serif" font-size="15" fill="#CDB0C6" letter-spacing="2">CALLE ESTRELLA</text>
+          <text transform="translate(406 300) rotate(-90)" font-family="Bungee, Arial Black, sans-serif" font-size="13" fill="#CDB0C6" letter-spacing="2">CALLE LEÓN</text>
+          <circle class="pin-onda" cx="400" cy="168" r="26" fill="#FF3FB4" opacity=".4"/>
+          <circle cx="400" cy="168" r="30" fill="#FF3FB4" opacity=".18"/>
+          <g transform="translate(400 168)" style="filter:drop-shadow(0 0 10px #FF3FB4)">
+            <circle r="21" fill="#FFF2F8" stroke="#FF3FB4" stroke-width="3"/>
+            <path d="M-9.5 -9h19L0 3z" fill="#FF3FB4"/><path d="M0 3v7M-5 10.5h10" stroke="#FF3FB4" stroke-width="2" stroke-linecap="round"/>
+          </g>
+        </svg>
+        <span class="over">
+          <span><b>Calle Estrella esq. León #84</b><span>Casco de Ponce, PR 00716</span></span>
+          <span class="btn btn-rosa">Cómo llegar</span>
+        </span>
+      </a>
+      <div class="tile t-cont">
+        <small>Llámanos o escríbenos</small>
+        <span class="tel">787-605-7113</span>
+        <div class="cont-row">
+          <a class="btn btn-rosa" href="tel:+17876057113"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Llamar</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/candybarexoticdrinks/" target="_blank" rel="noopener">@candybarexoticdrinks</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><b>Candy Bar Exotic Drinks</b> · Est. 2021 · Ponce, Puerto Rico</span>
+    <span>Disfruta con responsabilidad.</span>
+    <span>Prototipo de En El Mapa</span>
+  </div>
+</footer>
+
+<div class="bar" id="mbar">
+  <a class="btn btn-rosa" href="tel:+17876057113">Llamar</a>
+  <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Candy+Bar+Exotic+Drinks+Calle+Estrella+84+Ponce+PR" target="_blank" rel="noopener">Cómo llegar</a>
+</div>
+
+<script>
+(() => {
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const cl = v => Math.min(1, Math.max(0, v));
+const eo = t => 1 - Math.pow(1 - t, 3), ei = t => t * t * t;
+const eio = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+const back = t => { const c = 1.6; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+
+/* ================= Horario en vivo (hora de Puerto Rico) ================= */
+const DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+const CIERRE = {3:24, 4:24, 5:27, 6:27};            // hora de cierre contada desde el día que abre
+function estado(){
+  const n = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Puerto_Rico'}));
+  const d = n.getDay(), m = n.getHours()*60 + n.getMinutes(), ayer = (d + 6) % 7;
+  let open = false, cierra = '', fila = d, txt = '';
+  if (CIERRE[d] && m >= 1080){ open = true; cierra = CIERRE[d] === 24 ? '12 a.m.' : '3 a.m.'; }
+  else if (m < 180 && CIERRE[ayer] === 27){ open = true; cierra = '3 a.m.'; fila = ayer; }
+  if (open) txt = 'Abierto ahora, cierra a las ' + cierra;
+  else if (CIERRE[d] && m < 1080) txt = 'Abre hoy a las 6 p.m.';
+  else for (let i = 1; i <= 7; i++){ const k = (d + i) % 7; if (CIERRE[k]){ txt = i === 1 ? 'Abre mañana a las 6 p.m.' : 'Abre el ' + DIAS[k] + ' a las 6 p.m.'; break; } }
+  $$('[data-estado]').forEach(e => e.textContent = txt);
+  $$('.dot').forEach(e => e.classList.toggle('on', open));
+  $('#badge').classList.toggle('on', open); $('#badgeTxt').textContent = open ? 'Abierto ahora' : 'Cerrado';
+  const g = (fila === 3 || fila === 4) ? 'mj' : (fila === 5 || fila === 6) ? 'vs' : 'dlm';
+  $$('.hrs [data-g]').forEach(r => r.classList.toggle('hoy', r.dataset.g === g));
+}
+estado(); setInterval(estado, 60000);
+
+/* ================= Nav y barra móvil ================= */
+const nav = $('#nav'), mbar = $('#mbar');
+let tk = false;
+function onScroll(){ tk = false; nav.classList.toggle('solid', scrollY > 40); mbar.classList.toggle('show', innerWidth <= 640 || scrollY > innerHeight * .6); }
+addEventListener('scroll', () => { if (!tk){ tk = true; requestAnimationFrame(onScroll); } }, {passive:true});
+onScroll();
+
+/* ================= Letrero de bombillas (Canvas) =================
+   El texto se pinta en un canvas oculto, se muestrea en una rejilla y
+   cada punto lleno se vuelve una bombilla. Una onda recorre las bombillas. */
+const cv = $('#bombillas'), ctx = cv.getContext('2d');
+let dots = [], spr = null, R = 4, bw = 0, on0 = 0, lastF = 0, visible = true, raf = 0;
+function buildSign(){
+  const w = cv.parentElement.clientWidth; if (!w) return;
+  bw = w;
+  const lines = w < 520 ? ['CANDY','BAR'] : ['CANDY BAR'];
+  const fs = 200, font = `400 ${fs}px Bungee, "Arial Black", Impact, sans-serif`;
+  const off = document.createElement('canvas'), o = off.getContext('2d');
+  o.font = font;
+  const ws = lines.map(l => o.measureText(l).width), tw = Math.max(...ws), lh = fs * .95;
+  off.width = Math.ceil(tw) + 8; off.height = Math.ceil(lh * lines.length) + 8;
+  o.font = font; o.textBaseline = 'top'; o.fillStyle = '#fff';
+  lines.forEach((l, i) => o.fillText(l, 4 + (lines.length > 1 ? (tw - ws[i]) / 2 : 0), 4 + i * lh));
+  const scale = w / off.width, H = off.height * scale;
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  cv.width = Math.round(w * dpr); cv.height = Math.round(H * dpr); cv.style.height = H + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const step = Math.max(8, Math.round(off.width / (lines.length > 1 ? 34 : 64)));
+  const data = o.getImageData(0, 0, off.width, off.height).data;
+  dots = [];
+  for (let y = step/2; y < off.height; y += step)
+    for (let x = step/2; x < off.width; x += step)
+      if (data[(Math.floor(y) * off.width + Math.floor(x)) * 4 + 3] > 140) dots.push({x: x * scale, y: y * scale, r: Math.random()});
+  R = step * scale * .36;
+  const S = Math.ceil(R * 3.2); spr = document.createElement('canvas'); spr.width = spr.height = S * 2 * dpr;
+  const s = spr.getContext('2d'), gr = s.createRadialGradient(S*dpr, S*dpr, 0, S*dpr, S*dpr, S*dpr);
+  gr.addColorStop(0, '#FFFFFF'); gr.addColorStop(.2, '#FFE6F4'); gr.addColorStop(.34, 'rgba(255,63,180,.95)'); gr.addColorStop(.6, 'rgba(255,63,180,.28)'); gr.addColorStop(1, 'rgba(255,63,180,0)');
+  s.fillStyle = gr; s.fillRect(0, 0, spr.width, spr.height); spr.S = S;
+}
+function drawSign(now){
+  const W = cv.width, H = cv.height; ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0, 0, W, H); ctx.restore();
+  ctx.fillStyle = '#4A1B42'; ctx.beginPath();
+  for (const d of dots){ ctx.moveTo(d.x + R, d.y); ctx.arc(d.x, d.y, R, 0, 6.283); }
+  ctx.fill();
+  ctx.globalCompositeOperation = 'lighter';
+  const t = now - on0, S = spr.S;
+  for (const d of dots){
+    let a;
+    if (reduce) a = 1;
+    else {
+      const p = cl((t - d.x * 1.1 - d.r * 120) / 260);                  // encendido de izquierda a derecha
+      const wave = .62 + .38 * (.5 + .5 * Math.sin(now * .0042 - d.x * .03 + d.y * .01));
+      const blink = d.r > .985 ? (.5 + .5 * Math.sin(now * .02 + d.r * 50)) : 1;
+      a = p * wave * blink;
+    }
+    if (a <= .02) continue;
+    ctx.globalAlpha = a; ctx.drawImage(spr, d.x - S, d.y - S, S * 2, S * 2);
+  }
+  ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+}
+function loopSign(now){
+  raf = 0; if (!visible || reduce) return;
+  if (now - lastF > (now - on0 < 2200 ? 15 : 32)){ lastF = now; drawSign(now); }   // 60 fps al encender, 30 fps en reposo
+  raf = requestAnimationFrame(loopSign);
+}
+function startSign(){ buildSign(); on0 = performance.now(); if (reduce) drawSign(on0); else if (!raf) raf = requestAnimationFrame(loopSign); }
+new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !raf && !reduce) raf = requestAnimationFrame(loopSign); }).observe(cv);
+let rw;
+addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { if (cv.parentElement.clientWidth !== bw){ buildSign(); if (reduce) drawSign(performance.now()); } }, 150); });
+
+/* ================= El trago (SVG + un solo reloj) =================
+   Todo el vertido es una función del tiempo: render(t). Cada pieza
+   tiene su tramo y su curva, así la secuencia nunca se descuadra. */
+const svg = $('#trago'), liq = $('#liquido'), chorro = $('#chorro'), coct = $('#coctelera');
+const alg = $('#algodon'), paj = $('#pajilla'), pin = $('#pincho'), halo = $('#halo');
+const hielos = [...$('#hielos').children], otro = $('#otro');
+const HIELO = [{x:148, y:404, r:-8, o:0}, {x:198, y:408, r:7, o:5}, {x:170, y:368, r:15, o:-26}];
+const EMPTY = 458, FULL = 292;
+let seed = 11; const rnd = () => (seed = seed * 16807 % 2147483647) / 2147483647;
+const puffs = [];
+for (let i = 0; i < 9; i++) puffs.push({x: 142 + i * 14.5 + rnd()*6, y: 250 + rnd()*10, r: 20 + rnd()*8});
+for (let i = 0; i < 30; i++){ const a = rnd() * 6.283, k = Math.sqrt(rnd()); puffs.push({x: 200 + Math.cos(a)*92*k, y: 196 + Math.sin(a)*66*k, r: 24 + rnd()*22}); }
+puffs.sort((a, b) => b.y - a.y);
+alg.innerHTML = puffs.map(() => '<circle r="1" fill="url(#gPuff)"/>').join('');
+const circles = [...alg.children];
+circles.forEach((c, i) => c.setAttribute('r', puffs[i].r));
+const PIV = {x:338, y:150};
+
+function surface(level, amp, now){
+  let d = `M120 480 L120 ${level}`;
+  for (let x = 124; x <= 280; x += 8)
+    d += ` L${x} ${(level + amp * Math.sin(x * .07 + now * .009) + amp * .5 * Math.sin(x * .15 - now * .013)).toFixed(1)}`;
+  return d + ' L280 480 Z';
+}
+// fase: 'pour' (t desde el inicio) o estado drenado
+function render(t, now, drain = 0){
+  // coctelera: entra, se inclina, vierte, se endereza y sale
+  const enter = eo(cl(t / 520)), tilt = eio(cl((t - 260) / 520)), untilt = eio(cl((t - 2420) / 460)), leave = ei(cl((t - 2700) / 480));
+  const ang = -125 * (tilt - untilt), tx = 240 * (1 - enter) + 420 * leave;
+  coct.setAttribute('transform', `translate(${PIV.x + tx} ${PIV.y}) rotate(${ang})`);
+  coct.style.opacity = (t <= 0 || leave >= 1) ? 0 : 1;
+  const rad = ang * Math.PI / 180, sx = PIV.x + tx + 98 * Math.sin(rad), sy = PIV.y - 98 * Math.cos(rad);
+  // nivel del líquido
+  const fill = eio(cl((t - 720) / 1700)) * (1 - drain);
+  const level = EMPTY - (EMPTY - FULL) * fill;
+  const pouring = t > 700 && t < 2520;
+  const amp = pouring ? 3.6 : 3.6 * Math.exp(-Math.max(0, t - 2520) / 500) + .6;
+  liq.setAttribute('d', surface(level, fill > .01 ? amp : 0, now));
+  // chorro
+  if (pouring){
+    const grow = cl((t - 700) / 180), thin = 1 - cl((t - 2330) / 190);
+    const ex = 228 + Math.sin(now * .02) * 1.5, ey = sy + (level - sy) * grow;
+    chorro.setAttribute('d', `M${sx.toFixed(1)} ${sy.toFixed(1)} Q${(sx - 20).toFixed(1)} ${(sy + 16).toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}`);
+    chorro.setAttribute('stroke-width', (8.5 * Math.min(grow * 3, 1) * thin).toFixed(2));
+  } else chorro.setAttribute('stroke-width', 0);
+  // hielo que flota con el nivel
+  hielos.forEach((h, i) => {
+    const c = HIELO[i], fy = Math.min(c.y, level - 16 + c.o + Math.sin(now * .003 + i) * (fill > .3 ? 2 : 0));
+    h.setAttribute('transform', `translate(${c.x} ${fy.toFixed(1)}) rotate(${c.r + (fill > .3 ? Math.sin(now * .002 + i) * 3 : 0)} 21 20)`);
+  });
+  // algodón de azúcar, motita por motita
+  circles.forEach((c, i) => {
+    const s = back(cl((t - 2850 - i * 26) / 460)) * (1 - eio(drain));
+    c.setAttribute('transform', `translate(${puffs[i].x.toFixed(1)} ${puffs[i].y.toFixed(1)}) scale(${Math.max(0, s).toFixed(3)})`);
+  });
+  // pajilla y pincho de candy
+  const pj = eo(cl((t - 3550) / 560)), pn = back(cl((t - 3800) / 600));
+  paj.setAttribute('transform', `translate(0 ${(-420 * (1 - pj) - 260 * drain).toFixed(1)})`);
+  paj.style.opacity = pj > 0 && drain < .9 ? 1 : 0;
+  pin.setAttribute('transform', `translate(${(120 * (1 - pn) + 140 * drain).toFixed(1)} ${(-160 * (1 - pn) - 160 * drain).toFixed(1)})`);
+  pin.style.opacity = pn > 0 && drain < .9 ? 1 : 0;
+  halo.setAttribute('opacity', (cl((t - 3000) / 900) * (1 - drain) * .9).toFixed(2));
+}
+
+const PALETAS = [
+  {l1:'#FF86CF', l2:'#E8208F', c1:'#FFD6EC', c2:'#FF9BD0'},   // rosa
+  {l1:'#9EEBFF', l2:'#3AA8F0', c1:'#DDF6FF', c2:'#9FD8FF'},   // azul algodón
+  {l1:'#CFA4FF', l2:'#7E43EE', c1:'#F1E3FF', c2:'#D2B0FF'},   // lila
+  {l1:'#B5F58A', l2:'#3DBE5A', c1:'#FFE1F1', c2:'#FFB3DA'}    // green skittles
+];
+let pal = 0, mode = 'idle', t0 = 0, idleRaf = 0, svVisible = true;
+function setPal(i){ const p = PALETAS[i]; for (const k in p) svg.style.setProperty('--' + k, p[k]); }
+function frame(now){
+  if (mode === 'pour'){
+    const t = now - t0; render(t, now);
+    if (t > 4400){ mode = 'done'; svg.classList.add('listo'); otro.disabled = false; }
+  } else if (mode === 'drain'){
+    const k = cl((now - t0) / 650); render(5000, now, k);
+    if (k >= 1){ pal = (pal + 1) % PALETAS.length; setPal(pal); mode = 'pour'; t0 = now; }
+  } else if (mode === 'done'){
+    render(5000, now);
+  }
+  idleRaf = (svVisible && mode !== 'idle') ? requestAnimationFrame(frame) : 0;
+}
+function pour(){
+  if (reduce){ render(5000, 0); svg.classList.add('listo'); otro.disabled = false; mode = 'done'; return; }
+  mode = 'pour'; t0 = performance.now(); if (!idleRaf) idleRaf = requestAnimationFrame(frame);
+}
+otro.addEventListener('click', () => {
+  if (mode !== 'done') return;
+  otro.disabled = true; svg.classList.remove('listo');
+  if (reduce){ pal = (pal + 1) % PALETAS.length; setPal(pal); render(5000, 0); svg.classList.add('listo'); otro.disabled = false; return; }
+  mode = 'drain'; t0 = performance.now(); if (!idleRaf) idleRaf = requestAnimationFrame(frame);
+});
+new IntersectionObserver(es => { svVisible = es[0].isIntersecting; if (svVisible && !idleRaf && mode !== 'idle' && !reduce) idleRaf = requestAnimationFrame(frame); }).observe(svg);
+render(0, 0);
+
+/* Arranque: espera la fuente del letrero (máximo 1.2 s) y empieza a servir */
+let started = false;
+function go(){ if (started) return; started = true; startSign(); setTimeout(pour, reduce ? 0 : 350); }
+if (document.fonts && document.fonts.load){
+  Promise.race([document.fonts.load('400 100px Bungee'), new Promise(r => setTimeout(r, 1200))]).then(go, go);
+} else go();
+
+/* ================= Shotsitos ================= */
+const SHOTS = {
+  bears:{l:['#F7C860','#DE8A1F'], top:'bears'}, esqui:{l:['#EFFAFF','#A8DBF6'], top:'frost'},
+  jelly:{l:['#FF77A6','#DD1257'], top:'gloss'}, skittles:{l:['#A6F27E','#38BE48'], top:''},
+  bomb:{l:['#FFD94C','#E61E50'], top:''}, mamaita:{l:['#F8C6D6','#D4567F'], top:'crema'},
+  meji:{l:['#FFA1CD','#EE418C'], top:'tajin'}, cake:{l:['#F8E4C6','#DFB485'], top:'crema chispitas'},
+  snickers:{l:['#B37D55','#683C22'], top:'choco'}, cosmo:{l:['#FFB7DA','#FF5BA6'], top:'algodon'},
+  poison:{l:['#E9AAAE','#A4506A'], top:'crema'}
+};
+const GLASS = 'M8 6 L44 6 L40 58 Q39.8 60.5 37.5 60.5 L14.5 60.5 Q12.2 60.5 12 58 Z';
+function vaso(k, i){
+  const s = SHOTS[k], id = 'sg' + i; let top = '', inner = '';
+  if (s.top.includes('crema')) top += '<g fill="#fff" stroke="#EADCF0" stroke-width=".8"><circle cx="18" cy="15" r="6"/><circle cx="35" cy="15" r="6"/><circle cx="26.5" cy="11" r="7.5"/></g>';
+  if (s.top.includes('chispitas')) top += '<g><rect x="20" y="9" width="4" height="1.6" rx=".8" fill="#FF3FB4" transform="rotate(30 22 10)"/><rect x="28" y="6" width="4" height="1.6" rx=".8" fill="#56D9FF"/><rect x="33" y="11" width="4" height="1.6" rx=".8" fill="#FFC93C" transform="rotate(-35 35 12)"/><rect x="24" y="13" width="4" height="1.6" rx=".8" fill="#A46BFF"/></g>';
+  if (s.top.includes('algodon')) top += '<g fill="#FFC6E5"><circle cx="17" cy="7" r="9"/><circle cx="36" cy="8" r="8.5"/><circle cx="26.5" cy="1" r="11"/></g><circle cx="22" cy="-2" r="4" fill="#fff" opacity=".85"/>';
+  if (s.top.includes('tajin')) top += '<path d="M9 7.5H43" stroke="#D2471F" stroke-width="4.5" stroke-linecap="round" stroke-dasharray=".1 2.6"/><path d="M9 7.5H43" stroke="#E86A2C" stroke-width="2.4" stroke-linecap="round" opacity=".7"/>';
+  if (s.top.includes('choco')) top += '<path d="M9 7.5H43" stroke="#4A2414" stroke-width="5" stroke-linecap="round"/><path d="M15 9v5M24 9v3M33 9v6" stroke="#4A2414" stroke-width="2.4" stroke-linecap="round"/>';
+  if (s.top.includes('frost')) top += '<g fill="#fff" opacity=".9"><circle cx="18" cy="20" r="1.6"/><circle cx="28" cy="25" r="1.3"/><circle cx="34" cy="19" r="1.8"/><circle cx="22" cy="30" r="1.2"/></g>';
+  if (s.top.includes('gloss')) top += '<path d="M30 22c3 0 5 2 5 5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity=".8"/>';
+  if (s.top.includes('bears')) top += '<g><rect x="16" y="40" width="7" height="9" rx="3" fill="#E8244F"/><rect x="26" y="44" width="7" height="9" rx="3" fill="#3CC24A"/><rect x="21" y="30" width="7" height="9" rx="3" fill="#FFE36A"/></g>';
+  return `<svg viewBox="0 0 52 64" aria-hidden="true"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${s.l[0]}"/><stop offset="1" stop-color="${s.l[1]}"/></linearGradient><clipPath id="${id}c"><path d="M9.6 7.6 L42.4 7.6 L38.7 57.4 Q38.5 59 36.8 59 L15.2 59 Q13.5 59 13.3 57.4 Z"/></clipPath></defs>
+    <path d="${GLASS}" fill="rgba(255,255,255,.75)"/>
+    <g clip-path="url(#${id}c)"><rect class="liq" x="0" y="16" width="52" height="46" fill="url(#${id})"/></g>
+    <g class="top">${top}</g>${inner}
+    <path d="${GLASS}" fill="none" stroke="#5B3A6B" stroke-opacity=".45" stroke-width="1.6"/>
+    <path d="M14.5 12 L17 52" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".75"/></svg>`;
+}
+const shots = $$('.shot');
+shots.forEach((b, i) => { b.querySelector('.vaso').innerHTML = vaso(b.dataset.k, i); b.style.setProperty('--d', (i * .07) + 's'); });
+const hoja = $('#hoja');
+if ('IntersectionObserver' in window && !reduce && hoja.getBoundingClientRect().top > innerHeight){
+  shots.forEach(b => b.classList.add('vacio'));
+  const io = new IntersectionObserver(es => { if (es[0].isIntersecting){ io.disconnect(); requestAnimationFrame(() => shots.forEach(b => b.classList.remove('vacio'))); } }, {threshold:.15});
+  io.observe(hoja);
+}
+shots.forEach(b => b.addEventListener('click', () => {
+  b.style.setProperty('--d', '0s'); b.classList.add('vacio');
+  setTimeout(() => {
+    b.classList.remove('vacio');
+    const s = document.createElement('span'); s.className = 'salud'; s.textContent = '¡Salud!'; s.setAttribute('aria-hidden', 'true');
+    b.appendChild(s); setTimeout(() => s.remove(), 1200);
+  }, 280);
+}));
+
+/* ================= Neón letra por letra ================= */
+const local = $('#local'), neones = $$('.neon');
+neones.forEach((n, j) => {
+  const txt = n.textContent; n.setAttribute('aria-label', txt);
+  n.innerHTML = [...txt].map(ch => `<span aria-hidden="true" style="--dl:${(j * .45 + Math.random() * .5).toFixed(2)}s">${ch === ' ' ? '&nbsp;' : ch}</span>`).join('');
+});
+if ('IntersectionObserver' in window && !reduce && local.getBoundingClientRect().top > innerHeight){
+  local.classList.add('apagado'); neones.forEach(n => n.classList.add('apagado'));
+  const io = new IntersectionObserver(es => {
+    if (!es[0].isIntersecting) return; io.disconnect();
+    local.classList.remove('apagado'); local.classList.add('on');
+    neones.forEach(n => { n.classList.remove('apagado'); n.classList.add('on'); });
+    setTimeout(chispazos, 3200);
+  }, {threshold:.3});
+  io.observe(local);
+} else if (!reduce) setTimeout(chispazos, 3000);
+function chispazos(){
+  const letters = $$('.neon span');
+  (function tick(){
+    const l = letters[Math.floor(Math.random() * letters.length)];
+    l.style.animation = 'none'; void l.offsetWidth; l.style.animation = ''; l.classList.remove('chis'); void l.offsetWidth; l.classList.add('chis');
+    setTimeout(tick, 1800 + Math.random() * 3200);
+  })();
+}
+
+/* ================= Vela del Birthday Cake ================= */
+const vela = $('#vela');
+vela.addEventListener('click', () => {
+  if (vela.classList.contains('soplada')) return;
+  vela.classList.add('soplada');
+  if (!reduce){
+    const cols = ['#FF3FB4','#56D9FF','#FFE36A','#A46BFF','#fff'];
+    for (let i = 0; i < 22; i++){
+      const c = document.createElement('i'); c.className = 'confeti';
+      const a = Math.random() * Math.PI - Math.PI, d = 60 + Math.random() * 90;
+      c.style.cssText = `left:50%;top:10%;background:${cols[i % 5]};--x:${(Math.cos(a) * d).toFixed(0)}px;--y:${(Math.sin(a) * d * .9 + 40).toFixed(0)}px;--r:${(Math.random() * 540).toFixed(0)}deg`;
+      vela.appendChild(c); setTimeout(() => c.remove(), 1400);
+    }
+  }
+  vela.setAttribute('aria-label', 'Vela soplada. Toca otra vez en un momento para encenderla.');
+  setTimeout(() => { vela.classList.remove('soplada'); vela.setAttribute('aria-label', 'Sopla la vela del Candy Birthday Cake'); }, 3200);
+});
+
+/* ================= Planifica tu noche: arma el mensaje ================= */
+const form = $('#plan'), msg = $('#msg'), pers = $('#pers'), nombre = $('#nombre'), nota = $('#notaCopia');
+let n = 4;
+function texto(){
+  const tipo = form.tipo.value, dia = form.dia.value, nom = nombre.value.trim();
+  const hola = nom ? `¡Hola! Soy ${nom}.` : '¡Hola!';
+  const quien = n === 1 ? '1 persona' : `${n} personas`;
+  return tipo === 'cumple'
+    ? `${hola} Quiero celebrar un cumpleaños en Candy Bar el ${dia}. Seríamos ${quien}. ¿Qué tienen disponible?`
+    : `${hola} Me gustaría pedir entrada temprana para el ${dia}. Seríamos ${quien}. ¿Cómo funciona?`;
+}
+function upd(){ pers.textContent = n; msg.textContent = texto(); }
+$('#menos').addEventListener('click', () => { n = Math.max(1, n - 1); upd(); });
+$('#mas').addEventListener('click', () => { n = Math.min(40, n + 1); upd(); });
+form.addEventListener('input', upd); form.addEventListener('change', upd);
+form.addEventListener('submit', e => e.preventDefault());
+$('#enviar').addEventListener('click', () => {
+  const t = texto();
+  const ok = () => { nota.textContent = 'Mensaje copiado. Pégalo en el chat de Instagram.'; };
+  const fallback = () => { const r = document.createRange(); r.selectNodeContents(msg); const s = getSelection(); s.removeAllRanges(); s.addRange(r); nota.textContent = 'Copia el mensaje seleccionado y pégalo en Instagram.'; };
+  try { navigator.clipboard.writeText(t).then(ok, fallback); } catch(e){ fallback(); }
+});
+upd();
+})();
+</script>
+
+</body>
+</html>
